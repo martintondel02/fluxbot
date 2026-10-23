@@ -7,7 +7,7 @@ x-fluxbot: &fluxbot
   env_file:
     - .env
   environment:
-    DATABASE_URL: postgres://fluxbot:${POSTGRES_PASSWORD:-fluxbot}@postgres:5432/fluxbot
+    DATABASE_URL: ${DATABASE_URL}
 
 services:
   postgres:
@@ -30,7 +30,7 @@ services:
     restart: "no"
     environment:
       ROLE: migrate
-      DATABASE_URL: postgres://fluxbot:${POSTGRES_PASSWORD:-fluxbot}@postgres:5432/fluxbot
+      DATABASE_URL: ${DATABASE_URL}
     depends_on:
       postgres:
         condition: service_healthy
@@ -40,7 +40,7 @@ services:
     restart: unless-stopped
     environment:
       ROLE: bot
-      DATABASE_URL: postgres://fluxbot:${POSTGRES_PASSWORD:-fluxbot}@postgres:5432/fluxbot
+      DATABASE_URL: ${DATABASE_URL}
     depends_on:
       postgres:
         condition: service_healthy
@@ -54,7 +54,7 @@ services:
       ROLE: web
       PORT: 3000
       HOSTNAME: 0.0.0.0
-      DATABASE_URL: postgres://fluxbot:${POSTGRES_PASSWORD:-fluxbot}@postgres:5432/fluxbot
+      DATABASE_URL: ${DATABASE_URL}
     ports:
       - "127.0.0.1:${WEB_PORT:-3000}:3000"
     depends_on:

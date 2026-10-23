@@ -28,7 +28,7 @@ jobs:
           --health-retries 12
 
     env:
-      DATABASE_URL: postgres://fluxbot:fluxbot@localhost:5432/fluxbot
+      DATABASE_URL: postgres://fluxbot:${{ secrets.DB_URL_WITH_PASS }}@localhost:5432/fluxbot
       FLUXER_INSTANCE_ORIGIN: https://fluxer.example.com
       FLUXER_APP_ID: "900000000000000001"
       FLUXER_CLIENT_SECRET: ci-client-secret

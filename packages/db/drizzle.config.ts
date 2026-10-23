@@ -5,7 +5,7 @@ export default defineConfig({
   out: './drizzle',
   dialect: 'postgresql',
   dbCredentials: {
-    url: process.env.DATABASE_URL ?? 'postgres://fluxbot:fluxbot@localhost:5432/fluxbot',
+    url: process.env.DB_URL_WITH_PASS ?? 'postgres://fluxbot:fluxbot@localhost:5432/fluxbot',
   },
   strict: true,
   verbose: true,
